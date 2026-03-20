@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brooke Lewis — West Palm Beach Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Gambetta:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --white: #ffffff;
+      --ink: #f0f0f0;
+      --ink-soft: #a0a8b0;
+      --ink-faded: #5c6670;
+      --accent: #4a9ec2;
+      --deep: #1c3f5a;
+      --sky: #6db4d6;
+      --warm: #c9a96e;
+      --warm-glow: #dfc28e;
+      --serif: 'Gambetta', 'Georgia', serif;
+      --sans: 'Instrument Sans', sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);background:var(--bg);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#1e2a35;border-radius:10px}
+    img{display:block;max-width:100%}
+
+    .r{opacity:0;transform:translateY(50px);transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+    .r.v{opacity:1;transform:translateY(0)}
+    .rl{opacity:0;transform:translateX(-60px);transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+    .rl.v{opacity:1;transform:translateX(0)}
+    .rr{opacity:0;transform:translateX(60px);transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+    .rr.v{opacity:1;transform:translateX(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.34s}.d4{transition-delay:.46s}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;width:100%;z-index:999;padding:1.4rem 3rem;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;pointer-events:none}
+    nav *{pointer-events:auto}
+    .logo{font-family:var(--serif);font-size:1rem;color:#fff;text-decoration:none;font-weight:500}
+    .nav-links{list-style:none;display:flex;gap:2rem}
+    .nav-links a{font-size:.65rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-decoration:none;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:#fff;transition:width .5s var(--ease)}
+    .nav-links a:hover::after{width:100%}
+
+    /* HERO */
+    .hero{min-height:100vh;padding:8rem 3rem 5rem;display:flex;align-items:center;position:relative;background:#000;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 55% 35%,rgba(30,80,120,.18),transparent 70%),radial-gradient(ellipse 30% 40% at 15% 80%,rgba(201,169,110,.04),transparent),linear-gradient(170deg,#000,#060d14 30%,#0c1c2a 60%,#132d42 100%)}
+    .hero-noise{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:128px}
+    .hero-grid{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr .85fr;gap:5rem;align-items:center}
+    .hero-text{max-width:500px}
+    .hero-eyebrow{font-size:.62rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--warm);margin-bottom:1.8rem;display:inline-flex;align-items:center;gap:.7rem;opacity:0;animation:rise 1.4s .2s var(--ease) forwards}
+    .hero-eyebrow::before{content:'';width:24px;height:1.5px;background:var(--warm)}
+    .hero h1{font-family:var(--serif);font-size:clamp(2.4rem,4.5vw,3.8rem);color:#fff;font-weight:400;line-height:1.15;margin-bottom:1.5rem;opacity:0;animation:rise 1.5s .35s var(--ease) forwards}
+    .hero h1 em{font-style:italic;color:var(--sky)}
+    .hero-bio{font-family:var(--serif);font-size:.95rem;color:rgba(255,255,255,.38);line-height:1.9;margin-bottom:2rem;opacity:0;animation:rise 1.5s .5s var(--ease) forwards}
+    .hero-details{display:flex;gap:2.5rem;margin-bottom:2.5rem;opacity:0;animation:rise 1.5s .6s var(--ease) forwards}
+    .hero-detail span{display:block;font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faded);margin-bottom:.15rem}
+    .hero-detail strong{font-family:var(--serif);font-size:1.1rem;color:#fff;font-weight:400}
+    .hero-cta{opacity:0;animation:rise 1.5s .7s var(--ease) forwards;display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+    .hero-phone{font-family:var(--serif);font-size:1.1rem;color:#fff;text-decoration:none;transition:color .3s}
+    .hero-phone:hover{color:var(--warm)}
+    .hero-or{font-size:.72rem;color:rgba(255,255,255,.2)}
+    .link{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--warm);display:inline-flex;align-items:center;gap:.7rem;transition:gap .5s var(--ease),color .3s}
+    .link:hover{gap:1.2rem}
+    .link .ln{width:25px;height:1px;background:currentColor;transition:width .5s var(--ease)}
+    .link:hover .ln{width:45px}
+    .link-dark{color:var(--sky)}.link-dark:hover{color:var(--warm)}
+    @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+    .hero-photo-wrap{position:relative;display:flex;justify-content:center;opacity:0;animation:rise 1.6s .4s var(--ease) forwards}
+    .hero-photo-wrap img{width:100%;max-width:360px;border-radius:5px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+    .photo-tag{position:absolute;bottom:-1rem;left:50%;transform:translateX(-50%);background:var(--warm);color:var(--bg);white-space:nowrap;padding:.55rem 1.3rem;font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;border-radius:3px;box-shadow:0 6px 20px rgba(201,169,110,.3)}
+
+    .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.6rem;opacity:0;animation:rise 1.6s 1.2s var(--ease) forwards}
+    .scroll-hint span{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.2);font-weight:600}
+    .scroll-line{width:1px;height:40px;position:relative;overflow:hidden}
+    .scroll-line::after{content:'';position:absolute;top:-40px;left:0;width:1px;height:40px;background:linear-gradient(to bottom,transparent,var(--warm));animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%{transform:translateY(0)}100%{transform:translateY(80px)}}
+
+    /* LISTINGS */
+    .listings{padding:7rem 3rem;background:#0e0e0e}
+    .listings-top{max-width:1200px;margin:0 auto 3.5rem;display:flex;justify-content:space-between;align-items:flex-end}
+    .listings-top h2{font-family:var(--serif);font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:400;color:#fff}
+    .listings-top h2 em{font-style:italic;color:var(--accent)}
+    .listings-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+    .listing{position:relative;overflow:hidden;border-radius:5px;cursor:pointer;aspect-ratio:3/4}
+    .listing-bg{position:absolute;inset:0;transition:transform .8s var(--ease)}
+    .listing:hover .listing-bg{transform:scale(1.04)}
+    .listing:nth-child(1) .listing-bg{background:linear-gradient(155deg,#1a3d55,#0a1a28 55%,#050d14)}
+    .listing:nth-child(2) .listing-bg{background:linear-gradient(155deg,#1f4a65,#0e2235 55%,#07131d)}
+    .listing:nth-child(3) .listing-bg{background:linear-gradient(155deg,#163a50,#0b1e2d 55%,#040c14)}
+    .listing-info{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.8rem 1.6rem;background:linear-gradient(to top,rgba(0,0,0,.92) 40%,transparent);z-index:2}
+    .listing-status{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--warm);font-weight:600;margin-bottom:.3rem}
+    .listing-price{font-family:var(--serif);font-size:1.5rem;color:#fff}
+    .listing-addr{color:rgba(255,255,255,.4);font-size:.8rem;margin:.15rem 0 .6rem}
+    .listing-meta{display:flex;gap:1rem;font-size:.68rem;color:rgba(255,255,255,.28);font-weight:500;letter-spacing:.03em}
+
+    /* CONTACT */
+    .contact{padding:6rem 3rem;background:#050505;position:relative;overflow:hidden;text-align:center}
+    .contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 45% at 50% 55%,rgba(30,80,120,.08),transparent)}
+    .contact-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
+    .contact-inner h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);color:#fff;font-weight:400;line-height:1.2;margin-bottom:1rem}
+    .contact-inner h2 em{font-style:italic;color:var(--sky)}
+    .contact-inner>p{font-family:var(--serif);color:rgba(255,255,255,.3);font-size:.93rem;line-height:1.85;margin-bottom:2.5rem}
+    .contact-methods{display:flex;justify-content:center;gap:3.5rem;flex-wrap:wrap}
+    .cm-item h4{font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--warm);margin-bottom:.3rem}
+    .cm-item a{font-family:var(--serif);font-size:1.15rem;color:#fff;text-decoration:none;transition:color .3s}
+    .cm-item a:hover{color:var(--warm)}
+
+    footer{padding:1.5rem 3rem;background:#050505;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center;font-size:.65rem;color:rgba(255,255,255,.12)}
+    footer a{color:rgba(255,255,255,.12);text-decoration:none;transition:color .3s}
+    footer a:hover{color:var(--warm)}
+    .flinks{display:flex;gap:1.5rem}
+
+    @media(max-width:900px){
+      nav{padding:1rem 1.5rem}.nav-links{display:none}
+      .hero{padding:7rem 1.5rem 4rem}
+      .hero-grid{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+      .hero-text{max-width:100%}
+      .hero-eyebrow{justify-content:center}
+      .hero-details{justify-content:center;flex-wrap:wrap}
+      .hero-cta{justify-content:center}
+      .hero-photo-wrap img{max-width:260px}
+      .hero-photo-wrap{order:-1}
+      .listings{padding:5rem 1.5rem}
+      .listings-top{flex-direction:column;align-items:flex-start;gap:1rem}
+      .listings-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+      .listing{aspect-ratio:4/5}
+      .contact{padding:5rem 1.5rem}
+      .contact-methods{gap:2rem}
+      footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.2rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Brooke Lewis</a>
+  <ul class="nav-links">
+    <li><a href="#listings">Listings</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- SECTION 1: BROOKE -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-eyebrow">West Palm Beach, Florida</div>
+      <h1>Brooke Lewis<br><em>Your West Palm Beach Realtor</em></h1>
+      <p class="hero-bio">Award-winning agent, dedicated mom, and your go-to for buying and selling in West Palm Beach and Palm Beach County. RE/MAX 100% Club Award recipient &mdash; because every client gets 100% of my effort, every time.</p>
+      <div class="hero-details">
+        <div class="hero-detail"><span>Brokerage</span><strong>RE/MAX</strong></div>
+        <div class="hero-detail"><span>Recognition</span><strong>100% Club Award</strong></div>
+        <div class="hero-detail"><span>Area</span><strong>Palm Beach County</strong></div>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="link">Get in touch <span class="ln"></span></a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img src="brooke.png" alt="Brooke Lewis">
+      <div class="photo-tag">RE/MAX 100% Club</div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- SECTION 2: LISTINGS -->
+<section class="listings" id="listings">
+  <div class="listings-top">
+    <div>
+      <h2 class="r">Recent <em>listings</em></h2>
+    </div>
+    <a href="#contact" class="link link-dark r d1">Work with Brooke <span class="ln"></span></a>
+  </div>
+  <div class="listings-grid">
+    <div class="listing r">
+      <div class="listing-bg"></div>
+      <div class="listing-info">
+        <div class="listing-status">Just Listed</div>
+        <div class="listing-price">$785,000</div>
+        <div class="listing-addr">412 Flagler Dr, West Palm Beach</div>
+        <div class="listing-meta"><span>4 Bed</span><span>3 Bath</span><span>2,400 sqft</span></div>
+      </div>
+    </div>
+    <div class="listing r d1">
+      <div class="listing-bg"></div>
+      <div class="listing-info">
+        <div class="listing-status">Under Contract</div>
+        <div class="listing-price">$540,000</div>
+        <div class="listing-addr">1801 S Olive Ave, WPB</div>
+        <div class="listing-meta"><span>3 Bed</span><span>2 Bath</span><span>1,850 sqft</span></div>
+      </div>
+    </div>
+    <div class="listing r d2">
+      <div class="listing-bg"></div>
+      <div class="listing-info">
+        <div class="listing-status">Sold</div>
+        <div class="listing-price">$1,150,000</div>
+        <div class="listing-addr">920 N Lake Way, Palm Beach</div>
+        <div class="listing-meta"><span>5 Bed</span><span>4 Bath</span><span>3,200 sqft</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <h2 class="r">Let's find your <em>perfect home.</em></h2>
+    <p class="r d1">Buying, selling, or just exploring. Reach out anytime &mdash; I'd love to help.</p>
+    <div class="contact-methods r d2">
+      <div class="cm-item">
+        <h4>Call / Text</h4>
+        <a href="tel:+15551234567">(555) 123-4567</a>
+      </div>
+      <div class="cm-item">
+        <h4>Email</h4>
+        <a href="mailto:brooke@remax.com">brooke@remax.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2026 Brooke Lewis &middot; RE/MAX &middot; West Palm Beach, FL</span>
+  <div class="flinks">
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+  </div>
+</footer>
+
+<script>
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}})},{threshold:.1});
+  document.querySelectorAll('.r,.rl,.rr').forEach(function(el){obs.observe(el)});
+</script>
+
+</body>
+</html>
